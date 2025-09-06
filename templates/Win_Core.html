@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+   <head>
+        <title>Sample Web</title>
+        <link rel="stylesheet" href="/static/styles2.css"/>
+        <!-- Boxicons CSS Link -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <style>
+          
+        </style>
+    </head>
+    <header>
+            <a href="#" class="logo">Logo</a>
+            <ul class ="nav-links">
+                <li><a href={{url_for ('home')}}> Back to Home </a></li>         
+            </ul>      
+            <i class='bx bx-menu' id="menu-icon"></i>
+        </header>
+    <div class="main-content">
+    <h1>Teacher's Schedule Management</h1>
+        <div class="todo-container">
+            <!-- NEW FORM: Add a full task with all details -->
+            <div class="task-input">
+                <h3>Add Task Here</h3>
+
+                <form method="POST" action="{{ url_for('add_task') }}">
+                    <input type="text" name="text" placeholder="Task description..." required/>
+                    <input type="text" name="teacher" placeholder="Teacher name..." required/>
+                    <input type="text" name="subject" placeholder="Subject..." required/>
+                    <input type="date" name="assigned_date" required/>
+                    <!-- Updated button with Boxicon -->
+                    <button><i class='bx bx-plus-circle'></i></button>
+                </form>
+            </div>
+        
+            <ul id=todo-list>
+                {% for task in tasks %}
+                <li class="{% if task.done %}done{% endif %}" data-toggle-url="{{ url_for('toggle_task', id=task.id) }}" data-id="{{ task.id }}">
+                    
+                    <span class="task-text">{{ task.text }}</span>
+               
+                     <form method="POST" action="{{ url_for('edit_task', id=task.id) }}" class="edit-form" style="display: none;">
+                        <input type="text" name="new_task" placeholder="{{ task.text }}" required>
+                        <input type="text" name="new_teacher" placeholder="{{ task.teacher }}" required>
+                        <input type="text" name="new_subject" placeholder="{{ task.subject }}" required>
+                        <input type="date" name="new_assigned_date" value="{{ task.assigned_date }}" required>
+                        <button class="edit">✔️</button>
+                        <button type="button" class="cancel-edit">✖️</button>
+                    </form>
+ 
+                    <!-- Edit Toggle Button -->
+                    <button type="button" class="edit-toggle">📝</button>
+ 
+                    <!-- Delete Toggle Button -->
+                    <div style="display: flex; gap: 5px;">
+                       
+                        <form method="POST" action="{{ url_for('delete_task', id=task.id) }}" class="delete-form">
+                            <!-- <input type="hidden" name="task_to_delete" value="{{ task.id }}"/>  -->
+                            <button class="delete">🗑️</button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            const editButtons = document.querySelectorAll(".edit-toggle");
+            const cancelButtons = document.querySelectorAll(".cancel-edit");
+            const list = document.getElementById('todo-list');
+ 
+            // Toggle edit form for the clicked item
+            editButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                const li = button.closest("li");                 // the current <li>
+                const form = li.querySelector(".edit-form");     // form within this <li>
+                const taskText = li.querySelector(".task-text"); // text within this <li>
+      
+                taskText.style.display = "none";
+                form.style.display = "flex";
+                button.style.display = "none";
+                });
+            });       
+                 // Cancel edit
+            cancelButtons.forEach(button => 
+            {
+                button.addEventListener("click", function () {
+                const li = button.closest("li");                 // the current <li>
+                const form = li.querySelector(".edit-form");     // form within this <li>
+                const taskText = li.querySelector(".task-text"); // text within this <li>
+                const editToggle = li.querySelector(".edit-toggle"); // other button within this <li>
+ 
+                taskText.style.display = "inline";
+                form.style.display = "none";
+                editToggle.style.display = "inline";
+                });
+            });
+             
+            if (!list) return;
+ 
+            // Click-to-toggle "done" (ignores clicks on buttons/forms)
+            list.addEventListener('click', function (e) {
+                if (e.target.closest('button') || e.target.closest('form')) return; // <-- removed stray "="
+                const li = e.target.closest('li');
+                if (!li) return;
+                li.classList.toggle('done');
+ 
+                const url = li.dataset.toogleUrl || `/toggle/${li.dataset.id}`;
+ 
+                fetch(url, { method: "POST" });
+                });
+            });
+            </script>
+    </body>
+</html>

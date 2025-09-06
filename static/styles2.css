@@ -1,0 +1,223 @@
+
+/*Global Styles */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box ;
+    font-family: 'Poppins';
+}
+body{
+    padding-right: 6em;
+    background-color: rgb(19,19,19);
+    color: white
+}
+.main-content
+{
+    margin-top: 8em; /* Add top margin to avoid overlap with fixed header */
+}
+/* Header styles */
+header{
+    width: 100%;
+    position: fixed;
+    padding: 4em 12%;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    z-index: 100; /* Add z-index to ensure it's on top of other content */
+}
+header .logo{
+    font-size: 2em;
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+    opacity: 0.8;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;    
+}
+header .logo:hover{
+    opacity: 1;
+}
+/* Navigation Styles */
+.nav-links { /* New class to select the navigation list */
+    list-style-type: none;
+    display: flex;
+    gap: 3em;
+    font-size: 1.2em;
+}
+ul li a{
+    text-decoration: none; /* Remove underline from links */
+    color: white;
+    opacity: 0.8;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+ul li a:hover{
+    opacity: 1;
+}
+/* Main Container and its appearance - Win_Core.html */
+.todo-container{
+    max-width: 500px;
+    margin: 4em auto 0;
+    background: linear-gradient(270deg, rgb(87, 87, 130) 10%, grey 100%);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+}
+/* Forms for adding tasks */
+.task-input {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+.task-input form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.task-input h3 {
+    color: #61dafb; /* Use the accent color for subheadings */
+    border-bottom: 1px solid #4a5059;
+    padding-bottom: 10px;
+}
+.task-input input[type="text"],
+.task-input input[type="date"],
+.task-input input[type="file"] {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #4a5059; /* Subtle border that matches the theme */
+    border-radius: 8px;
+    background-color: #2e3239; /* Darker background for input fields */
+    color: #abb2bf;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.task-input input:focus {
+    outline: none;
+    border-color: #61dafb;
+    box-shadow: 0 0 5px rgba(97, 218, 251, 0.5);
+}
+.task-input button{
+    padding: 12px 20px;
+    background-color: #61dafb;
+    color: #282c34; /* Dark text for contrast */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.task-input button:hover {
+    background-color: #4ac7f2;
+    transform: translateY(-2px);
+}
+
+/*Menu icon for mobile view*/
+#menu-icon{
+    font-size: 3em;
+    display: none; 
+    color: white;
+    cursor: pointer;
+}
+section{
+    min-height: 100vh;
+    padding: 10% 12%;
+    display: flex;
+    /* Change flex-direction to row to place items side by side */
+    flex-direction: row; 
+    align-items: center;
+    justify-content: center;
+    gap: 5em;
+    flex-wrap: wrap; /* Allow section content to wrap on smaller screens */
+}
+
+.info-box{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.info-box h1{
+    font-size: 5em;
+    line-height: 1; 
+}
+.info-box h3{
+    font-size: 2em;
+    line-height: 1;
+}
+.gradient-txt{
+    background: linear-gradient(270deg, rgb(87, 87, 130) 10%, grey 100%);
+    background-clip: text;
+    color:transparent
+}
+.btn-box{
+    display: flex;
+    gap:1em;
+    
+}
+.btn{
+    padding: 0.5em 1em;
+    outline-style: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    background-color: rgb(211, 205, 205);
+    border: px solid transparent;
+    color: black;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn:hover{
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+}
+.bento-grid{
+    flex:1;
+    height: 600px;
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* Container for the bento layout */
+.bento-container {
+    display: grid; /* Enables CSS Grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Creates a responsive, two-column layout */
+    gap: 20px; /* Adds space between the grid items */
+    width: 80%; /* Sets the width of the container */
+    max-width: 1200px;
+    margin: 40px auto; /* Centers the container on the page */
+    padding: 20px;
+    background-color: #333;
+    border-radius: 15px; /* Adds rounded corners to the container */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Styles for the image inside the bento container */
+.profile-pic {
+    width: 50%; /* Makes the image fill its grid cell */
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles for the text box inside the bento container */
+.bento-text-box {
+    padding: 20px;
+    background-color: #444;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically centers the text */
+    color: #f0f0f0;
+}
+
+.bento-text-box p {
+    margin: 0;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+

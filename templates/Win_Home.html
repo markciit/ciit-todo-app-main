@@ -1,0 +1,51 @@
+<!-- Personal Version-->
+
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0">
+
+        <title>Teacher's Schedule Management</title>
+        <link rel="stylesheet" href="/static/styles2.css"/>
+        
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+        <header>
+            <a href="#" class="logo">Logo</a>
+            <ul class ="nav-links">
+                <li><a href={{url_for ('home')}}> Home </a></li>
+                <li><a href={{url_for('about')}}> Teachers </a></li>
+                
+            </ul>
+
+            
+            <i class='bx bx-menu' id="menu-icon"></i>
+        </header>
+
+        <section>
+            <div class ="info-box">
+                <h1><span class="gradient-txt">Bento Grid</span>
+                </h1>
+
+                <h3><span class="gradient-txt">Teacher's Schedule Management</span>
+                </h3>
+
+                <p>Manage your teaching schedule with ease using our intuitive platform.
+                Stay organized, track your classes, and never miss an appointment again!</p>
+            
+
+            <div class= "btn-box">
+                <button> <a href="{{ url_for('get_started') }}" class="btn">Get Started</a> </button>
+                
+            </div>
+
+            <div class="bento-grid">
+            
+
+        </section>      
+    </body>
+</html>
+       

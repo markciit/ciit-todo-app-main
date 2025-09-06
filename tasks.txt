@@ -1,0 +1,4 @@
+1.Create database table
+ID, Teacher Name, Date, Subject, remarks, created at, updated at
+
+2.
