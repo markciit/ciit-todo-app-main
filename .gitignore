@@ -1,2 +1,4 @@
-session-5-env/
+.venv/
+winkids.csv
+winkids.py
 results.txt
