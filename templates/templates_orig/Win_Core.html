@@ -33,12 +33,17 @@
                 </form>
             </div>
         
-            <ul id=todo-list>
+            <ul id="todo-list">
                 {% for task in tasks %}
                 <li class="{% if task.done %}done{% endif %}" data-toggle-url="{{ url_for('toggle_task', id=task.id) }}" data-id="{{ task.id }}">
-                    
-                    <span class="task-text">{{ task.text }}</span>
-               
+                        <div>
+            <span class="task-text">{{ task.text }}</span>
+            <div class="task-details">
+                <span>**Teacher:** {{ task.teacher }}</span>
+                <span>**Subject:** {{ task.subject }}</span>
+                <span>**Assigned Date:** {{ task.assigned_date }}</span>
+            </div>
+        </div>
                      <form method="POST" action="{{ url_for('edit_task', id=task.id) }}" class="edit-form" style="display: none;">
                         <input type="text" name="new_task" placeholder="{{ task.text }}" required>
                         <input type="text" name="new_teacher" placeholder="{{ task.teacher }}" required>
