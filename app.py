@@ -49,9 +49,9 @@ def home():
    
     #Display
     tasks = Task.query.order_by(Task.created_at.desc()).all()
-    # return render_template("index.html", tasks = read_tasks())
-    return render_template("index.html", tasks = tasks)
- 
+    return render_template("index.html", tasks = read_tasks())
+    
+
 @app.route("/delete/<int:id>", methods=["POST"])
 def delete_task(id):
     # task_to_delete = request.form.get("task_to_delete")
@@ -102,11 +102,11 @@ def toggle_task(id):
     task.done = not task.done
     db.session.commit()
     return("",204)
- 
-   
+
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    #return render_template("about.html")
+    return render_template("Win_About.html")
 
 #CSV Upload
 @app.route("/download_csv", methods=["GET"])
