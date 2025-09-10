@@ -49,7 +49,7 @@ def home():
    
     #Display
     tasks = Task.query.order_by(Task.created_at.desc()).all()
-    return render_template("index.html", tasks = read_tasks())
+    return render_template("index.html", tasks = tasks)
     
 
 @app.route("/delete/<int:id>", methods=["POST"])
