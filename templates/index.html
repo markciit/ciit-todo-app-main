@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sample Web</title>
+        <title>Task Master</title>
         <link rel="stylesheet" href="/static/styles.css"/>
     </head>
  
@@ -17,7 +17,7 @@
                     <input type="text" name="task" placeholder="Add task…" required/>
                     <button>Submit</button>
                 </form>
-            </div>1
+            </div>
             <div class="task-input">
                 <form method="POST" action={{ url_for('upload_csv') }} enctype="multipart/form-data">
                     <input type="file" name="csv_file" accept=".csv" required/>
